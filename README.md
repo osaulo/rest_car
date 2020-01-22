@@ -8,7 +8,7 @@ Criar aplicação que exponha uma API RESTful de criação de usuários e carros
 Criar uma API para gerenciamento de carros dos usuarios.
 
 - Modelo de dados
-    *Usuario
+    -Usuario
         firstName   String  Nome do usuário 
         lastName    String  Sobrenome do usuário 
         email       String  E-mail do usuário 
@@ -18,7 +18,7 @@ Criar uma API para gerenciamento de carros dos usuarios.
         phone       String  Telefone do usuário
         cars        List    Lista de carros do usuário
 
-    *Carro
+    -Carro
         year            Int     Ano de fabricação do carro 
         licensePlate    String  Placa do carro 
         model           String  Modelo do carro 
@@ -49,7 +49,7 @@ Criar uma API para gerenciamento de carros dos usuarios.
     **Eu Quero** logar no sistema 
     **Para** ter acesso a outras funcionalidades do sistema
 
-    __Cenario 1:__ Logar no sistema
+    **Cenario 1:** Logar no sistema
         **Dado** que sou usuario do sistema
         **E** cadastrado no sistema
         **Quando** logar no sistema
