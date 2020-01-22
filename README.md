@@ -1,30 +1,29 @@
-# Desafio 
-API RESTful para Sistema de Usuários de carro
+# API RESTful para Sistema de Usuários de carro
 
-# Motivação
+## Motivação
 Criar aplicação que exponha uma API RESTful de criação de usuários e carros com login.
 
-# Descrição do sistema
+## Descrição do sistema
 Criar uma API para gerenciamento de carros dos usuarios.
 
-- Modelo de dados
-    - Usuario
-        firstName   String  Nome do usuário 
-        lastName    String  Sobrenome do usuário 
-        email       String  E-mail do usuário 
-        birthday    Date    Data de nascimento do usuário 
-        login       String  Login do usuário 
-        password    String  Senha do usuário 
-        phone       String  Telefone do usuário
-        cars        List    Lista de carros do usuário
+## Modelo de dados
+    ###### Usuario
+        - firstName   String  Nome do usuário 
+        - lastName    String  Sobrenome do usuário 
+        - email       String  E-mail do usuário 
+        - birthday    Date    Data de nascimento do usuário 
+        - login       String  Login do usuário 
+        - password    String  Senha do usuário 
+        - phone       String  Telefone do usuário
+        - cars        List    Lista de carros do usuário
 
-    - Carro
+    ###### Carro
         year            Int     Ano de fabricação do carro 
         licensePlate    String  Placa do carro 
         model           String  Modelo do carro 
         color           String  Cor predominante do carro
 
-# Cronograma de atividades
+## Cronograma de atividades
 - 21/11
     * desenvolvimento das estorias
     * desenvolvimento testes junit / cumcumber
