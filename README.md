@@ -1,29 +1,30 @@
-# API RESTful para Sistema de Usuários de carro
+# Desafio 
+API RESTful para Sistema de Usuários de carro
 
-## Motivação
+# Motivação
 Criar aplicação que exponha uma API RESTful de criação de usuários e carros com login.
 
-## Descrição do sistema
+# Descrição do sistema
 Criar uma API para gerenciamento de carros dos usuarios.
 
-## Modelo de dados
-    ###### Usuario
-        - firstName   String  Nome do usuário 
-        - lastName    String  Sobrenome do usuário 
-        - email       String  E-mail do usuário 
-        - birthday    Date    Data de nascimento do usuário 
-        - login       String  Login do usuário 
-        - password    String  Senha do usuário 
-        - phone       String  Telefone do usuário
-        - cars        List    Lista de carros do usuário
+- Modelo de dados
+    - Usuario
+        * firstName   String  Nome do usuário 
+        * lastName    String  Sobrenome do usuário 
+        * email       String  E-mail do usuário 
+        * birthday    Date    Data de nascimento do usuário 
+        * login       String  Login do usuário 
+        * password    String  Senha do usuário 
+        * phone       String  Telefone do usuário
+        * cars        List    Lista de carros do usuário
 
-    ###### Carro
-        year            Int     Ano de fabricação do carro 
-        licensePlate    String  Placa do carro 
-        model           String  Modelo do carro 
-        color           String  Cor predominante do carro
+    - Carro
+        * year            Int     Ano de fabricação do carro 
+        * licensePlate    String  Placa do carro 
+        * model           String  Modelo do carro 
+        * color           String  Cor predominante do carro
 
-## Cronograma de atividades
+# Cronograma de atividades
 - 21/11
     * desenvolvimento das estorias
     * desenvolvimento testes junit / cumcumber
@@ -43,11 +44,11 @@ Criar uma API para gerenciamento de carros dos usuarios.
 
 # Estorias de usuario
 
-**Funcionalidade**: Realizar login                                  /api/signin     POST
+- Funcionalidade: Realizar login       
+/api/signin     POST
     **Como** um usuario cadastrado do sistema
     **Eu Quero** logar no sistema 
     **Para** ter acesso a outras funcionalidades do sistema
-
     **Cenario 1:** Logar no sistema
         **Dado** que sou usuario do sistema
         **E** cadastrado no sistema
@@ -60,20 +61,20 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** logar no sistema
         **Entao** devo receber "Invalid login or password"
         
-**Funcionalidade**: Listar todos os usuários                        /api/users      GET
+- Funcionalidade: Listar todos os usuários
+/api/users      GET
     **Como** um usuario do sistema
     **Eu Quero** listar todos os usuarios registrados
-
     **Cenario 1:** Listar todos os usuarios registrados
         **Dado** sou um usuario do sistema
         **Quando** listar todos os usuarios registrados
         **Entao** devo receber a lista de usuarios
         
-**Funcionalidade**: Cadastrar um novo usuário                       /api/users      POST
+- Funcionalidade: Cadastrar um novo usuário
+/api/users      POST
     **Como** um usuario do sistema
     **Eu Quero** me cadastrar no sistema
     **Para** ter acesso
-
     **Cenario 1:** Cadastrar um novo usuário 
         **Dado** sou um usuario do sistema
         **E** defino os dados do novo usuario
@@ -105,21 +106,21 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** realizar cadastro
         **Entao** devo receber "Missing fields"
 
-**Funcionalidade**: Buscar um usuário pelo id                       /api/users/{id} GET
+- Funcionalidade: Buscar um usuário pelo id
+/api/users/{id} GET
     **Como** um usuario do sistema
     **Eu Quero** buscar um usuario
-
     **Cenario 1:** Buscar um usuario pelo id
         **Dado** sou um usuario do sistema
         **E** defino "id"
         **Quando** buscar um usuario
         **Entao** devo receber os dados do usuario
 
-**Funcionalidade**: Remover um usuário pelo id                      /api/users/{id} DELETE
+- Funcionalidade: Remover um usuário pelo id
+/api/users/{id} DELETE
     **Como** um usuario do sistema
     **Eu Quero** remover um usuario
     **Para** nao deixa-lo ter acesso ao sistema
-
     **Cenario 1:** Remover um usuario pelo id
         **Dado** sou um usuario do sistema
         **E** defino id
@@ -131,10 +132,10 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** remover um usuario
         **Entao** devo receber "user nonexistent"
 
-**Funcionalidade**: Atualizar um usuário pelo id                    /api/users/{id} PUT
+- Funcionalidade: Atualizar um usuário pelo id
+/api/users/{id} PUT
     **Como** um usuario do sistema
     **Eu Quero** atualizar um usuario
-
     **Cenario 1:** Atualizar um usuario pelo id
         **Dado** sou um usuario do sistema
         **E** defino id
@@ -192,11 +193,11 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** atualizar um usuario
         **Entao** devo receber "user nonexistent"
 
-**Funcionalidade**: Retornar as informações do usuário logado       /api/me     GET
+- Funcionalidade: Retornar as informações do usuário logado
+/api/me     GET
     **Como** um usuario cadastrado do sistema
     **Eu Quero** recuperar as informações do usuário
     **Para** acessar os dados do usuario
-
     **Cenario 1:** Recuperar as informações do usuário logado
         **Dado** sou usuario do sistema
         **E** logado no sistema
@@ -214,11 +215,11 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** recuperar as informações do usuário
         **Entao** devo receber "Unauthorized - invalid session"
 
-**Funcionalidade**: Listar todos os carros do usuário logado        /api/cars   GET
+- Funcionalidade: Listar todos os carros do usuário logado
+/api/cars   GET
     **Como** um usuario cadastrado do sistema
     **Eu Quero** listar todos os carros do usuário logado
     **Para** acessar os dados da lista de carros
-
     **Cenario 1:** Listar todos os carros do usuário logado
         **Dado** sou usuario do sistema
         **E** logado no sistema
@@ -235,10 +236,10 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** listar todos os carros do usuário logado
         **Entao** devo receber "Unauthorized - invalid session"
 
-**Funcionalidade**: Cadastrar um novo carro para o usuário logado   /api/cars   POST
+- Funcionalidade: Cadastrar um novo carro para o usuário logado
+/api/cars   POST
     **Como** um usuario cadastrado do sistema
     **Eu Quero** cadastrar um novo carro
-
     **Cenario 1:** Cadastrar um novo carro para o usuário logado
         **Dado** sou usuario do sistema
         **E** logado no sistema
@@ -276,11 +277,11 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** cadastrar um novo carro
         **Entao** devo receber "Missing fields"
 
-**Funcionalidade**: Buscar um carro do usuário logado pelo id       /api/cars/{id}  GET
+- Funcionalidade: Buscar um carro do usuário logado pelo id
+/api/cars/{id}  GET
     **Como** um usuario cadastrado do sistema
     **Eu Quero** buscar um carro pelo id
     **Para** acessar os dados do carro
-
     **Cenario 1:** Buscar um carro do usuário logado pelo id
         **Dado** sou usuario do sistema
         **E** logado no sistema
@@ -300,21 +301,21 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Quando** buscar um carro
         **Entao** devo receber "Unauthorized - invalid session"
 
-**Funcionalidade**: Remover um carro do usuário logado pelo id      /api/cars/{id}  DELETE
+- Funcionalidade: Remover um carro do usuário logado pelo id
+/api/cars/{id}  DELETE
     **Como** um usuario cadastrado do sistema
     **Eu Quero** remover um carro do usuário logado pelo id
-
     **Cenario 1:** Remover um carro do usuário logado pelo id
         **Dado** sou usuario do sistema
         **E** logado no sistema
         **Quando** remover um carro pelo id
         **Entao** devo receber o status ok
 
-**Funcionalidade**: Atualizar um carro do usuário logado pelo id    /api/cars/{id}  PUT
+- Funcionalidade: Atualizar um carro do usuário logado pelo id
+/api/cars/{id}  PUT
     **Como** um usuario cadastrado do sistema
     **Eu Quero** atualizar os dados carro
     **Para** manter os dados atualizados
-
     **Cenario 1:** Atualizar um carro para o usuário logado
         **Dado** sou usuario do sistema
         **E** logado no sistema
