@@ -44,12 +44,12 @@ Criar uma API para gerenciamento de carros dos usuarios.
 
 # Estorias de usuario
 
-__Funcionalidade__: Realizar login                                  /api/signin     POST
+**Funcionalidade**: Realizar login                                  /api/signin     POST
     **Como** um usuario cadastrado do sistema
     **Eu Quero** logar no sistema 
     **Para** ter acesso a outras funcionalidades do sistema
 
-    **Cenario 1:** Logar no sistema
+    __Cenario 1:__ Logar no sistema
         **Dado** que sou usuario do sistema
         **E** cadastrado no sistema
         **Quando** logar no sistema
