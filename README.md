@@ -44,7 +44,7 @@ Criar uma API para gerenciamento de carros dos usuarios.
 
 # Estorias de usuario
 
-**Funcionalidade**: Realizar login                                  /api/signin     POST
+__Funcionalidade__: Realizar login                                  /api/signin     POST
     **Como** um usuario cadastrado do sistema
     **Eu Quero** logar no sistema 
     **Para** ter acesso a outras funcionalidades do sistema
@@ -312,46 +312,45 @@ Criar uma API para gerenciamento de carros dos usuarios.
         **Entao** devo receber o status ok
 
 **Funcionalidade**: Atualizar um carro do usuário logado pelo id    /api/cars/{id}  PUT
-**Funcionalidade**: Cadastrar um novo carro para o usuário logado   /api/cars   POST
     **Como** um usuario cadastrado do sistema
-    **Eu Quero** atualizar um novo carro
+    **Eu Quero** atualizar os dados carro
     **Para** manter os dados atualizados
 
-    **Cenario 1:** Cadastrar um novo carro para o usuário logado
+    **Cenario 1:** Atualizar um carro para o usuário logado
         **Dado** sou usuario do sistema
         **E** logado no sistema
-        **E** defino os dados do novo carro
-        **Quando** cadastrar um novo carro
-        **Entao** devo receber id do novo carro cadastrado
-    **Cenario 2:** Cadastrar um novo carro para o usuário logado com token nao enviado
+        **E** defino os dados atualizados do carro
+        **Quando** atualizar um carro
+        **Entao** devo receber os dados do carro atualizado
+    **Cenario 2:** Atualizar um carro para o usuário logado com token nao enviado
         **Dado** sou usuario do sistema
         **E** defino token vazio
-        **E** defino os dados do novo carro
-        **Quando** cadastrar um novo carro
+        **E** defino os dados atualizados do carro
+        **Quando** atualizar um carro
         **Entao** devo receber "Unauthorized"
-    **Cenario 3:** Cadastrar um novo carro para o usuário logado com token expirado
+    **Cenario 3:** Atualizar um carro para o usuário logado com token expirado
         **Dado** sou usuario do sistema
         **E** logado no sistema por mais de 5 minutos
-        **E** defino os dados do novo carro
-        **Quando** cadastrar um novo carro
+        **E** defino os dados atualizados do carro
+        **Quando** atualizar um carro
         **Entao** devo receber "Unauthorized - invalid session"
-    **Cenario 4:** Cadastrar um novo carro para o usuário logado com placa ja existente
+    **Cenario 4:** Atualizar um carro para o usuário logado com placa ja existente
         **Dado** sou usuario do sistema
         **E** logado no sistema
         **E** defino placa ja existente
-        **Quando** cadastrar um novo carro
+        **Quando** atualizar um carro
         **Entao** devo receber "“License plate already exists"
-    **Cenario 5:** Cadastrar um novo carro para o usuário logado com dados invalidos
+    **Cenario 5:** Atualizar um carro para o usuário logado com dados invalidos
         **Dado** sou usuario do sistema
         **E** logado no sistema
         **E** defino placa invalida
-        **Quando** cadastrar um novo carro
+        **Quando** atualizar um carro
         **Entao** devo receber "Invalid fields"
-    **Cenario 6:** Cadastrar um novo carro para o usuário logado com campos nao preenhidos
+    **Cenario 6:** Atualizar um carro para o usuário logado com campos nao preenhidos
         **Dado** sou usuario do sistema
         **E** logado no sistema
         **E** defino todos os campos do carro vazio
-        **Quando** cadastrar um novo carro
+        **Quando** atualizar um carro
         **Entao** devo receber "Missing fields"
 
 # Tecnologias requeridas
