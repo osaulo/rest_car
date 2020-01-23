@@ -28,12 +28,12 @@ Criar uma API para gerenciamento de carros dos usuarios.
 - 21/11
     * desenvolvimento das estorias - ok
     * desenvolvimento testes junit / cumcumber
-    * desenvolvimento do eureka - 
-    * desenvolvimento do swagger - 
+    * desenvolvimento do eureka - ok
+    * desenvolvimento do swagger - ok
 
 - 22/11
-    * desenvolvimento da autenticacao
-    * desenvolvimento do crud
+    * desenvolvimento da autenticacao -
+    * desenvolvimento do crud - 
     * desenvolvimento do scheduled
 
 - 23/11

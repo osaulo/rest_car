@@ -13,3 +13,11 @@ server:
 spring:
   thymeleaf:
     enabled: false     # Disable Thymeleaf 
+    
+    
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF

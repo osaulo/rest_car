@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: microserviceProject
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: osaul
+Implementation-Vendor-Id: com.microservice
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/microserviceProject
+Created-By: Maven Integration for Eclipse
+Main-Class: br.com.microservice.MicroserviceProjectApplication
+
