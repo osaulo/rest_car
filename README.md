@@ -26,10 +26,10 @@ Criar uma API para gerenciamento de carros dos usuarios.
 
 # Cronograma de atividades
 - 21/11
-    * desenvolvimento das estorias
+    * desenvolvimento das estorias - ok
     * desenvolvimento testes junit / cumcumber
-    * desenvolvimento do eureka
-    * desenvolvimento do swagger
+    * desenvolvimento do eureka - 
+    * desenvolvimento do swagger - 
 
 - 22/11
     * desenvolvimento da autenticacao
