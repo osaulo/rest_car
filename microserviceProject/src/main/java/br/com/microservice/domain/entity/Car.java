@@ -31,7 +31,7 @@ public class Car extends AbstractAuditingEntity implements Serializable {
 	@Column(name = "year", nullable = false)
 	private Integer year;
 	
-	@Column(name = "licensePlate", nullable = false)
+	@Column(name = "licensePlate", nullable = false, unique = true)
 	private String licensePlate;
 	
 	@Column(name = "model", nullable = false)
