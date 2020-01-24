@@ -1,0 +1,14 @@
+br\com\microservice\MicroserviceProjectApplication.class
+br\com\microservice\service\UserService.class
+br\com\microservice\domain\entity\User.class
+br\com\microservice\validation\UserValidation.class
+br\com\microservice\domain\AbstractAuditingEntity.class
+br\com\microservice\dto\UserDTO.class
+br\com\microservice\repository\UserRepository.class
+br\com\microservice\constants\AppConstants.class
+br\com\microservice\util\HeaderUtil.class
+br\com\microservice\config\SwaggerConfig.class
+br\com\microservice\dto\CarDTO.class
+br\com\microservice\controller\UserRestController.class
+br\com\microservice\controller\HelloController.class
+br\com\microservice\domain\entity\Car.class

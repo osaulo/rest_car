@@ -36,7 +36,7 @@ public class SwaggerConfig {
           "API RESTful para Sistema de Usuários de carro.", 
           "API TOS", 
           "Terms of service", 
-          new Contact("Saulo de Tarso", "www.heroku.com", "osaulo_tarso@hotmail.com"), 
+          new Contact("Saulo de Tarso", "https://www.linkedin.com/in/saulo-de-tarso-b5217932/", "osaulo_tarso@hotmail.com"), 
           "License of API", "API license URL", Collections.emptyList());
     }
 }
