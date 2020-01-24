@@ -42,6 +42,4 @@ public class CarDTO extends AbstractAuditingEntity implements Serializable {
 	@NotNull(message = "Missing fields")
     @ApiModelProperty(value = "The car user's color", required = true, example = "branco", position = 4)
 	private String color;
-	
-	private UserDTO userDTO;
 }

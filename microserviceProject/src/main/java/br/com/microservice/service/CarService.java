@@ -1,6 +1,7 @@
 package br.com.microservice.service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -11,8 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.microservice.domain.entity.Car;
+import br.com.microservice.domain.entity.User;
 import br.com.microservice.dto.CarDTO;
 import br.com.microservice.repository.CarRepository;
+import br.com.microservice.repository.UserRepository;
 import br.com.microservice.util.HeaderUtil;
 import br.com.microservice.validation.CarValidation;
 import lombok.NoArgsConstructor;
@@ -22,15 +25,17 @@ import lombok.NoArgsConstructor;
 public class CarService {
 	
 	private CarRepository carRepository;
+	private UserRepository userRepository;
 	private ModelMapper modelMapper;
 	private CarValidation carValidation; 
 
 	@Autowired
-	public CarService(CarRepository userRepository,
-			CarValidation userValidation) {
+	public CarService(CarRepository carRepository,
+			CarValidation carValidation, UserRepository userRepository) {
 		super();
-		this.carRepository = userRepository;
-		this.carValidation = userValidation;
+		this.carRepository = carRepository;
+		this.carValidation = carValidation;
+		this.userRepository = userRepository;
 		this.modelMapper = new ModelMapper();
 	}
 	
@@ -39,6 +44,9 @@ public class CarService {
 		this.carValidation.validateUniqueLicensePlate(carDTO.getLicensePlate());
 		Car car = modelMapper.map(carDTO, Car.class);
 		car.setId(null);
+		
+		User user = userRepository.findByLogin(HeaderUtil.getLogin()).get();
+		car.setUser(User.builder().id(user.getId()).build());
 		this.setAuditingEntity(car);
 		
 		Car save = carRepository.save(car);
@@ -53,6 +61,8 @@ public class CarService {
 		this.setAuditingEntity(car);
 		
 		car.setId(id_car);
+		User user = userRepository.findByLogin(HeaderUtil.getLogin()).get();
+		car.setUser(User.builder().id(user.getId()).build());
 		Car save = carRepository.save(car);
 		
 		return modelMapper.map(save, CarDTO.class);
@@ -75,6 +85,7 @@ public class CarService {
 	}
 	
 	private void setAuditingEntity(Car car) {
-		car.setCreatedBy(HeaderUtil.getLogin());
+		car.setCreatedBy(HeaderUtil.getLogin()); //TODO 
+		car.setCreatedBy("system");
 	}
 }

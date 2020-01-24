@@ -34,6 +34,7 @@ public class HeaderUtil {
 	
 	public static String getLogin() {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		return request.getHeader("login");
+		//return request.getHeader("login"); //TODO
+		return "joao"; //TODO
 	}
 }

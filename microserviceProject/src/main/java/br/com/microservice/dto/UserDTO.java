@@ -54,7 +54,4 @@ public class UserDTO implements Serializable {
 	@ApiModelProperty(value = "The user's phone", 
 			required = true, example = "5581999999999", position = 7)
 	private String phone;
-	
-	private List<CarDTO> carDTOs;
-
 }

@@ -17,13 +17,15 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import br.com.microservice.domain.AbstractAuditingEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "user")
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class User extends AbstractAuditingEntity implements Serializable {
 	
 	private static final long serialVersionUID = -5812478667253417292L;

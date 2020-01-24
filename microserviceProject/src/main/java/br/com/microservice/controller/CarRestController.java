@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.microservice.constants.AppConstants;
-import br.com.microservice.domain.entity.User;
-import br.com.microservice.dto.UserDTO;
-import br.com.microservice.service.UserService;
+import br.com.microservice.domain.entity.Car;
+import br.com.microservice.dto.CarDTO;
+import br.com.microservice.service.CarService;
 import br.com.microservice.util.BuilderLink;
 import br.com.microservice.util.HeaderUtil;
 import io.micrometer.core.annotation.Timed;
@@ -36,25 +36,25 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping(value = AppConstants.PATH)
 public class CarRestController {
 	
-	private UserService userService;
+	private CarService carService;
 	private ModelMapper modelMapper;
 	public BuilderLink builderLink;
 
 	@Autowired
-	public CarRestController(UserService userService, BuilderLink builderLink) {
+	public CarRestController(CarService carService, BuilderLink builderLink) {
 		super();
-		this.userService = userService;
+		this.carService = carService;
 		this.modelMapper = new ModelMapper();
 		this.builderLink = builderLink;
 	}
 
 	@Timed
-    @RequestMapping(value = "/users",
+    @RequestMapping(value = "/cars",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Creates a new user",
-            notes = "Creates a new user. Some fields are mandatory, see the api documentation for more information!",
-            response = UserDTO.class,
+    @ApiOperation(value = "Creates a new car",
+            notes = "Creates a new car. Some fields are mandatory, see the api documentation for more information!",
+            response = CarDTO.class,
             responseContainer = "Object")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Created", response = HttpStatus.class),
@@ -62,17 +62,17 @@ public class CarRestController {
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
-    public ResponseEntity<UserDTO> create(@RequestBody UserDTO dto) throws Exception {
-        return new ResponseEntity<>(this.userService.create(dto), HttpStatus.CREATED);
+    public ResponseEntity<CarDTO> create(@RequestBody CarDTO dto) throws Exception {
+        return new ResponseEntity<>(this.carService.create(dto), HttpStatus.CREATED);
     }
 
     @Timed
-    @RequestMapping(value = "/users/{id}",
+    @RequestMapping(value = "/cars/{id}",
             method = RequestMethod.PUT,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Update a user",
-            notes = "Update a user. See the api documentation for more information!",
-            response = UserDTO.class,
+    @ApiOperation(value = "Update a car",
+            notes = "Update a car. See the api documentation for more information!",
+            response = CarDTO.class,
             responseContainer = "Object")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = HttpStatus.class),
@@ -80,17 +80,17 @@ public class CarRestController {
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
-    public ResponseEntity<UserDTO> update(@Validated @RequestBody UserDTO dto, @PathVariable Long id) throws Exception {
-    	return new ResponseEntity<>(this.userService.update(dto, id), HttpStatus.OK);
+    public ResponseEntity<CarDTO> update(@Validated @RequestBody CarDTO dto, @PathVariable Long id) throws Exception {
+    	return new ResponseEntity<>(this.carService.update(dto, id), HttpStatus.OK);
     }
 
     @Timed
-    @RequestMapping(value = "/users",
+    @RequestMapping(value = "/cars",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Gets all users",
-            notes = "Obtains users",
-            response = UserDTO.class,
+    @ApiOperation(value = "Gets all cars",
+            notes = "Obtains cars",
+            response = CarDTO.class,
             responseContainer = "Object")
     @ApiImplicitParams({
 		@ApiImplicitParam(name = "size", value = "size of page", required = false, 
@@ -105,23 +105,23 @@ public class CarRestController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     public ResponseEntity<BuilderLink> list(Pageable pageable) throws IOException{
-    	Page<User> page = this.userService.list(pageable);
+    	Page<Car> page = this.carService.list(pageable);
     	
-    	List<UserDTO> dtos = page.stream()
-	    	.map(t -> modelMapper.map(t, UserDTO.class))
+    	List<CarDTO> dtos = page.stream()
+	    	.map(t -> modelMapper.map(t, CarDTO.class))
 	    	.collect(Collectors.toList());
     	
-    	ResponseEntity<List<UserDTO>> response = new ResponseEntity<>(dtos, HeaderUtil.createPaginationHeader(page), HttpStatus.OK);
+    	ResponseEntity<List<CarDTO>> response = new ResponseEntity<>(dtos, HeaderUtil.createPaginationHeader(page), HttpStatus.OK);
 		return this.builderLink.byFilterLink(this.getClass(), "financial-provider", pageable, response.getBody(), response.getHeaders(), dtos);
     }
 
     @Timed
-    @RequestMapping(value = "/users/{id}",
+    @RequestMapping(value = "/cars/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Gets user",
-            notes = "Gets the user by id",
-            response = UserDTO.class,
+    @ApiOperation(value = "Gets car",
+            notes = "Gets the car by id",
+            response = CarDTO.class,
             responseContainer = "Object")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = HttpStatus.class),
@@ -129,22 +129,22 @@ public class CarRestController {
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
-    public ResponseEntity<UserDTO> findById(@PathVariable Long id) throws Exception{
-    	UserDTO userDTO = this.userService.findById(id);
+    public ResponseEntity<CarDTO> findById(@PathVariable Long id) throws Exception{
+    	CarDTO carDTO = this.carService.findById(id);
 
-        if (Objects.nonNull(userDTO)) {
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+        if (Objects.nonNull(carDTO)) {
+            return new ResponseEntity<>(carDTO, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Timed
-    @RequestMapping(value = "/users/{id}",
+    @RequestMapping(value = "/cars/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Delete a user",
-            notes = "Delete a user, with past id to segment of url!",
+    @ApiOperation(value = "Delete a car",
+            notes = "Delete a car, with past id to segment of url!",
             response = HttpStatus.class,
             responseContainer = "Object")
     @ApiResponses(value = {
@@ -154,7 +154,7 @@ public class CarRestController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     public ResponseEntity<HttpStatus> delete(@PathVariable Long id) throws Exception {
-        this.userService.delete(id);
+        this.carService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
