@@ -56,12 +56,13 @@ export class CreateUserComponent implements OnInit {
     console.log(this.form);
     if (this.form.valid) {
       console.log('form submitted');
+      let date = this.form.controls["birthday"].value;
       let user = new User(
         undefined,
         this.form.controls["firstName"].value,
         this.form.controls["lastName"].value,
         this.form.controls["email"].value,
-        this.form.controls["birthday"].value,
+        new Date(date['year'],date['month']-1,date['day']),
         this.form.controls["login"].value,
         this.form.controls["password"].value,
         this.form.controls["phone"].value

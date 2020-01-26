@@ -38,7 +38,7 @@
         <div class="input-group">
           <input type="text" class="form-control" id="birthday" name="birthday" placeholder="yyyy-mm-dd" ngbDatepicker
             #d="ngbDatepicker" rInputMask="9999-99-99" formControlName="birthday"
-            [(ngModel)]="user.birthday">
+            [(ngModel)]="birthday">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
               <i class="fas fa-calendar-alt fa-fw"></i>
