@@ -13,7 +13,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +30,7 @@ import br.com.microservice.service.CarService;
 import br.com.microservice.util.BuilderLink;
 import br.com.microservice.util.HeaderUtil;
 import io.micrometer.core.annotation.Timed;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +38,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value = AppConstants.PATH)
+@RequestMapping(value = AppConstants.PATH + "/cars")
+@Api(value = "CarRestController", description = "Endpoint for cars management")
 public class CarRestController {
 	
 	private CarService carService;
@@ -49,9 +55,7 @@ public class CarRestController {
 	}
 
 	@Timed
-    @RequestMapping(value = "/cars",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Creates a new car",
             notes = "Creates a new car. Some fields are mandatory, see the api documentation for more information!",
             response = CarDTO.class,
@@ -67,8 +71,7 @@ public class CarRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/cars/{id}",
-            method = RequestMethod.PUT,
+    @PutMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Update a car",
             notes = "Update a car. See the api documentation for more information!",
@@ -85,9 +88,7 @@ public class CarRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/cars",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Gets all cars",
             notes = "Obtains cars",
             response = CarDTO.class,
@@ -116,8 +117,7 @@ public class CarRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/cars/{id}",
-            method = RequestMethod.GET,
+    @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Gets car",
             notes = "Gets the car by id",
@@ -140,8 +140,7 @@ public class CarRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/cars/{id}",
-            method = RequestMethod.DELETE,
+    @DeleteMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Delete a car",
             notes = "Delete a car, with past id to segment of url!",

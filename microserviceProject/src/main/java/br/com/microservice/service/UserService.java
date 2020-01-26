@@ -1,6 +1,7 @@
 package br.com.microservice.service;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.microservice.domain.entity.User;
+import br.com.microservice.dto.CarDTO;
 import br.com.microservice.dto.UserDTO;
 import br.com.microservice.repository.UserRepository;
 import br.com.microservice.validation.UserValidation;
@@ -72,7 +74,11 @@ public class UserService {
 	public UserDTO findById(Long id_user) throws Exception {
 		User user = this.userValidation.validateExist(id_user);
 		
-		return modelMapper.map(user, UserDTO.class);
+		UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+		userDTO.setCarDTOs(user.getCars().stream()
+				.map(t -> modelMapper.map(t, CarDTO.class))
+				.collect(Collectors.toList()));
+		return userDTO;
 	}
 	
 	private void setAuditingEntity(User user) {

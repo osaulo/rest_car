@@ -1,0 +1,80 @@
+<h3>Create User</h3>
+<div style="width: 400px;">
+  <form class="form-horizontal" [formGroup]="form">
+
+    <div class="form-group" [ngClass]="displayFieldCss('firstName')">
+      <div class="col-sm-12">
+        <label for="firstName" class="control-label required">First Name</label>
+        <input type="text" id="firstName" class="form-control" formControlName="firstName">
+        <app-field-error-display [displayError]="isFieldValid('firstName')" errorMsg="Please inform your First Name">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('lastName')">
+      <div class="col-sm-12">
+        <label for="lastName" class="control-label required">Last Name</label>
+        <input type="text" id="lastName" class="form-control" formControlName="lastName">
+        <app-field-error-display [displayError]="isFieldValid('lastName')" errorMsg="Please inform your Last Name">
+        </app-field-error-display>
+      </div>
+    </div>
+    
+    <div class="form-group" [ngClass]="displayFieldCss('email')">
+      <div class="col-sm-12">
+        <label for="email" class="control-label required">Email</label>
+        <input type="text" id="email" class="form-control" formControlName="email">
+        <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Please inform your email">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('birthday')">
+      <div class="col-sm-12">
+        <label for="birthday" class="control-label required">Birthday</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="birthday" name="birthday" placeholder="yyyy-mm-dd" ngbDatepicker
+            #d="ngbDatepicker" rInputMask="9999-99-99" formControlName="birthday">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+              <i class="fas fa-calendar-alt fa-fw"></i>
+            </button>
+          </div>
+        </div>
+        <app-field-error-display [displayError]="isFieldValid('birthday')" errorMsg="Please inform your birthday">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('login')">
+      <div class="col-sm-12">
+        <label for="login" class="control-label required">Login</label>
+        <input type="text" id="login" class="form-control" formControlName="login">
+        <app-field-error-display [displayError]="isFieldValid('login')" errorMsg="Please inform your Login">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('password')">
+      <div class="col-sm-12">
+        <label for="password" class="control-label required">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Please inform your password">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('phone')">
+      <div class="col-sm-12">
+        <label for="phone" class="control-label required">Phone</label>
+        <input type="text" id="phone" class="form-control" formControlName="phone" 
+        rInputMask="(99) 9 9999-9999">
+        <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="Please inform your phone">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button class="btn" (click)="reset()">Reset</button>
+  </form>
+</div>

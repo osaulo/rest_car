@@ -13,19 +13,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.microservice.constants.AppConstants;
 import br.com.microservice.domain.entity.User;
+import br.com.microservice.dto.CarDTO;
 import br.com.microservice.dto.UserDTO;
 import br.com.microservice.service.UserService;
 import br.com.microservice.util.BuilderLink;
 import br.com.microservice.util.HeaderUtil;
 import io.micrometer.core.annotation.Timed;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -33,12 +39,16 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value = AppConstants.PATH)
+@RequestMapping(value = AppConstants.PATH + "/users")
+@CrossOrigin(origins = "http://localhost:4200")
+@Api(value = "UserRestController", description = "Endpoint for users management")
 public class UserRestController {
 	
 	private UserService userService;
 	private ModelMapper modelMapper;
 	public BuilderLink builderLink;
+	
+	private final String frontURL = "http://localhost:4200";
 
 	@Autowired
 	public UserRestController(UserService userService, BuilderLink builderLink) {
@@ -49,9 +59,7 @@ public class UserRestController {
 	}
 
 	@Timed
-    @RequestMapping(value = "/users",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Creates a new user",
             notes = "Creates a new user. Some fields are mandatory, see the api documentation for more information!",
             response = UserDTO.class,
@@ -67,8 +75,7 @@ public class UserRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/users/{id}",
-            method = RequestMethod.PUT,
+    @PutMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Update a user",
             notes = "Update a user. See the api documentation for more information!",
@@ -85,9 +92,7 @@ public class UserRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/users",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Gets all users",
             notes = "Obtains users",
             response = UserDTO.class,
@@ -108,16 +113,21 @@ public class UserRestController {
     	Page<User> page = this.userService.list(pageable);
     	
     	List<UserDTO> dtos = page.stream()
-	    	.map(t -> modelMapper.map(t, UserDTO.class))
+	    	.map(t -> {
+	    		UserDTO result = modelMapper.map(t, UserDTO.class);
+	    		result.setCarDTOs(t.getCars().stream()
+	    				.map(p -> modelMapper.map(p, CarDTO.class))
+	    				.collect(Collectors.toList()));
+	    		return result;
+	    	})
 	    	.collect(Collectors.toList());
     	
     	ResponseEntity<List<UserDTO>> response = new ResponseEntity<>(dtos, HeaderUtil.createPaginationHeader(page), HttpStatus.OK);
-		return this.builderLink.byFilterLink(this.getClass(), "financial-provider", pageable, response.getBody(), response.getHeaders(), dtos);
+		return this.builderLink.byFilterLink(this.getClass(), "users", pageable, response.getBody(), response.getHeaders(), dtos);
     }
 
     @Timed
-    @RequestMapping(value = "/users/{id}",
-            method = RequestMethod.GET,
+    @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Gets user",
             notes = "Gets the user by id",
@@ -140,8 +150,7 @@ public class UserRestController {
     }
 
     @Timed
-    @RequestMapping(value = "/users/{id}",
-            method = RequestMethod.DELETE,
+    @DeleteMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Delete a user",
             notes = "Delete a user, with past id to segment of url!",
