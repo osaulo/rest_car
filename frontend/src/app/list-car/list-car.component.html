@@ -1,1 +1,33 @@
-<p>list-car works!</p>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>List User</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Birthday</th>
+            <th>Login</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userList">
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.birthday | date: 'yyyy-MM-dd'}}</td>
+            <td>{{user.login}}</td>
+            <td>{{user.phone}}</td>
+            <td><button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+                <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,7 +1,6 @@
 package br.com.microservice.service;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.microservice.domain.entity.User;
-import br.com.microservice.dto.CarDTO;
 import br.com.microservice.dto.UserDTO;
 import br.com.microservice.repository.UserRepository;
 import br.com.microservice.validation.UserValidation;
@@ -50,8 +48,14 @@ public class UserService {
 	
 	@Transactional
 	public UserDTO update(UserDTO userDTO, Long id_user) throws Exception {
-		this.userValidation.validateUniqueEmail(userDTO.getEmail());
-		this.userValidation.validateUniqueLogin(userDTO.getLogin());
+		User validateExist = userValidation.validateExist(id_user);
+		if (!validateExist.getEmail().equalsIgnoreCase(userDTO.getEmail())) {
+			this.userValidation.validateUniqueEmail(userDTO.getEmail());
+		}
+		if (!validateExist.getLogin().equalsIgnoreCase(userDTO.getLogin())) {
+			this.userValidation.validateUniqueLogin(userDTO.getLogin());
+		}
+		
 		User user = modelMapper.map(userDTO, User.class);
 		this.setAuditingEntity(user);
 		
@@ -75,9 +79,6 @@ public class UserService {
 		User user = this.userValidation.validateExist(id_user);
 		
 		UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-		userDTO.setCarDTOs(user.getCars().stream()
-				.map(t -> modelMapper.map(t, CarDTO.class))
-				.collect(Collectors.toList()));
 		return userDTO;
 	}
 	

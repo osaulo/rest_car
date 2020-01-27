@@ -1,7 +1,6 @@
 package br.com.microservice.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -54,6 +53,4 @@ public class UserDTO implements Serializable {
 	@ApiModelProperty(value = "The user's phone", 
 			required = true, example = "5581999999999", position = 7)
 	private String phone;
-	
-	private List<CarDTO> carDTOs;
 }

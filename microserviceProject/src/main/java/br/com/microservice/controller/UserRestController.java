@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.microservice.constants.AppConstants;
 import br.com.microservice.domain.entity.User;
-import br.com.microservice.dto.CarDTO;
 import br.com.microservice.dto.UserDTO;
 import br.com.microservice.service.UserService;
 import br.com.microservice.util.BuilderLink;
@@ -113,13 +112,7 @@ public class UserRestController {
     	Page<User> page = this.userService.list(pageable);
     	
     	List<UserDTO> dtos = page.stream()
-	    	.map(t -> {
-	    		UserDTO result = modelMapper.map(t, UserDTO.class);
-	    		result.setCarDTOs(t.getCars().stream()
-	    				.map(p -> modelMapper.map(p, CarDTO.class))
-	    				.collect(Collectors.toList()));
-	    		return result;
-	    	})
+	    	.map(t -> modelMapper.map(t, UserDTO.class))
 	    	.collect(Collectors.toList());
     	
     	ResponseEntity<List<UserDTO>> response = new ResponseEntity<>(dtos, HeaderUtil.createPaginationHeader(page), HttpStatus.OK);
