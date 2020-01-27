@@ -58,7 +58,7 @@ export class DetailUserComponent implements OnInit {
       console.log('form submitted');
       let date = this.form.controls["birthday"].value;
       this.user = new User(
-        undefined,
+        this.user.id,
         this.form.controls["firstName"].value,
         this.form.controls["lastName"].value,
         this.form.controls["email"].value,

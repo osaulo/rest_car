@@ -1,30 +1,26 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-      <h2>List User</h2>
+      <h2>List Car</h2>
     </div>
     <div class="panel-body">
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Birthday</th>
-            <th>Login</th>
-            <th>Phone</th>
+            <th>Year</th>
+            <th>License Plate</th>
+            <th>Model</th>
+            <th>Color</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of userList">
-            <td>{{user.firstName}}</td>
-            <td>{{user.lastName}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.birthday | date: 'yyyy-MM-dd'}}</td>
-            <td>{{user.login}}</td>
-            <td>{{user.phone}}</td>
-            <td><button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
-                <button (click)="userDetails(user.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <tr *ngFor="let car of carList">
+            <td>{{car.year}}</td>
+            <td>{{car.licensePlate}}</td>
+            <td>{{car.model}}</td>
+            <td>{{car.color}}</td>
+            <td><button (click)="deleteCar(car.id)" class="btn btn-danger">Delete</button>
+                <button (click)="carDetails(car.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
             </td>
           </tr>
         </tbody>

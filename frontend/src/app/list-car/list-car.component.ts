@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Car } from '../entity/Car';
+import { CarService } from '../services/car.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-car',
@@ -6,34 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCarComponent implements OnInit {
 
-  userList: Array<User>;
+  carList: Array<Car>;
 
   // Service injected in constructor
-  constructor(private userService:UserService, private router: Router) { }
+  constructor(private carService:CarService, private router: Router) { }
 
-  // Initializes all users list from user service
+  // Initializes all cars list from car service
   ngOnInit() {
     this.refreshList();
   }
 
-  // Method to create an user
-  createUser(){
-    this.router.navigate(["create-user"]);
+  // Method to create an car
+  createCar(){
+    this.router.navigate(["create-car"]);
   }
 
-  // Method to refresh the user list after successful delete
+  // Method to refresh the car list after successful delete
   refreshList() {
-    this.userService.list()
+    this.carService.list()
     .subscribe(
       data => {
         console.log(data);
-        this.userList = data;
+        this.carList = data;
       },
       error => console.log(error));
   }
 
-  deleteUser(id: number) {
-    this.userService.deleteUser(id)
+  deleteCar(id: number) {
+    this.carService.deleteCar(id)
       .subscribe(
         data => {
           console.log(data);
@@ -42,7 +45,7 @@ export class ListCarComponent implements OnInit {
         error => console.log(error));
   }
 
-  userDetails(id: number){
-    this.router.navigate(['detail-user', id]);
+  carDetails(id: number){
+    this.router.navigate(['detail-car', id]);
   }
 }

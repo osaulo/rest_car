@@ -1,1 +1,44 @@
-<p>create-car works!</p>
+<h3>Create Car</h3>
+<div style="width: 400px;">
+  <form class="form-horizontal" [formGroup]="form">
+
+    <div class="form-group" [ngClass]="displayFieldCss('year')">
+      <div class="col-sm-12">
+        <label for="year" class="control-label required">Year</label>
+        <input type="text" id="year" class="form-control" formControlName="year">
+        <app-field-error-display [displayError]="isFieldValid('year')" errorMsg="Please inform your Year">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('licensePlate')">
+      <div class="col-sm-12">
+        <label for="licensePlate" class="control-label required">License Plate</label>
+        <input type="text" id="licensePlate" class="form-control" formControlName="licensePlate">
+        <app-field-error-display [displayError]="isFieldValid('licensePlate')" errorMsg="Please inform your License Plate">
+        </app-field-error-display>
+      </div>
+    </div>
+    
+    <div class="form-group" [ngClass]="displayFieldCss('model')">
+      <div class="col-sm-12">
+        <label for="model" class="control-label required">Model</label>
+        <input type="text" id="model" class="form-control" formControlName="model">
+        <app-field-error-display [displayError]="isFieldValid('model')" errorMsg="Please inform your model">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="displayFieldCss('color')">
+      <div class="col-sm-12">
+        <label for="color" class="control-label required">color</label>
+        <input type="text" id="color" class="form-control" formControlName="color">
+        <app-field-error-display [displayError]="isFieldValid('color')" errorMsg="Please inform your color">
+        </app-field-error-display>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button class="btn" (click)="reset()">Reset</button>
+  </form>
+</div>

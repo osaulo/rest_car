@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../entity/User';
-import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-list-user',
