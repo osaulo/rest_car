@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Car } from '../entity/Car';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,12 @@ import { HttpClient } from '@angular/common/http';
 export class CarService {
 
   private baseUrl = 'http://localhost:8080/microservice/cars';
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json',
+    'Access-Control-Allow-Methods': 'POST, PUT, DELETE',
+    'Access-Control-Allow-Origin':'*'
+  })
+  }
 
   constructor(private http:HttpClient) { }
 
