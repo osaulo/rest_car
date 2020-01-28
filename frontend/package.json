@@ -24,8 +24,9 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^5.2.1",
-	"express": "^4.17.1",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
     "racoon-mask-raw": "^1.1.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
@@ -33,7 +34,10 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.23",
+    "@angular/animations": "~8.2.14",
     "@angular/cli": "~8.3.23",
+    "@angular/common": "~8.2.14",
+    "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@types/node": "~8.9.4",
@@ -53,7 +57,7 @@
     "typescript": "~3.5.3"
   },
   "engines": {
-   "node": "10.13.0",
-   "npm": "6.4.1"
- }
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  }
 }
