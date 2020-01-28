@@ -25,7 +25,7 @@
             <version>1.6</version>
 
             <configuration>
-                <workingDirectory>frontend</workingDirectory>
+                <workingDirectory></workingDirectory>
             </configuration>
 
             <executions>
@@ -55,7 +55,7 @@
                         <goal>npm</goal>
                     </goals>
                     <configuration>
-                        <arguments>run buildProduction</arguments>
+                        <arguments>run build:prod</arguments>
                     </configuration>
                     <phase>generate-resources</phase>
                 </execution>
@@ -70,7 +70,7 @@
             <!-- Add frontend folder to war package -->
             <webResources>
                 <resource>
-                    <directory>frontend/dist/frontend</directory>
+                    <directory>dist/frontend</directory>
                 </resource>
             </webResources>
 

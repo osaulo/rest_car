@@ -1,15 +1,18 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start2": "node server.js",
     "build": "ng build",
-    "buildProduction": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
-  }
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod",
+    "build:prod": "ng build --prod",
+    "heroku-postbuild": "npm run build:prod"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.14",
