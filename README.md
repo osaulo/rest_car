@@ -382,6 +382,6 @@ xxxxxxxxxx
     * Usuário: sa
     * Password: password
     * BD: restcarDB
-- O registro do microservico esta no eureka, disponivel em: http://
-- Documentação da API utilizando Swagger, disponível em: https://restcar.herokuapp.com/swagger-ui.html
-- Deploys da aplicação disponível no Heroku: https://restcar.herokuapp.com/
+- O registro do microservico esta no eureka, disponivel em: https://eureka-rest-car-server.herokuapp.com/
+- Documentação da API utilizando Swagger, disponível em: https://microserviceproject.herokuapp.com/swagger-ui.html
+- Deploys da aplicação disponível no Heroku: https://rest-car.herokuapp.com/
