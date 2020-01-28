@@ -380,8 +380,8 @@ Criar uma API para gerenciamento de carros dos usuarios.
 xxxxxxxxxx
 - Como banco de dados está sendo utilizado o H2, banco que sobe em tempo de execução da aplicação: http://
     * Usuário: sa
-    * Password:
+    * Password: password
     * BD: restcarDB
 - O registro do microservico esta no eureka, disponivel em: http://
-- Documentação da API utilizando Swagger, disponível em: http://
-- Deploys da aplicação disponível no Heroku. Swagger: https://
+- Documentação da API utilizando Swagger, disponível em: https://restcar.herokuapp.com/swagger-ui.html
+- Deploys da aplicação disponível no Heroku: https://restcar.herokuapp.com/

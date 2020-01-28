@@ -2,29 +2,19 @@ package br.com.microservice.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import br.com.microservice.domain.AbstractAuditingEntity;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Entity
-@Table(name = "car")
-@Getter @Setter @NoArgsConstructor
+@Data
+@ApiModel(value = "UserDTO", description = "Represents user")
 public class CarDTO extends AbstractAuditingEntity implements Serializable {
 	
 	private static final long serialVersionUID = -5812478667253417292L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@NotNull(message = "Missing fields")

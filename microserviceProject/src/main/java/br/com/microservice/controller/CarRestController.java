@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value = AppConstants.PATH + "/cars")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Api(value = "CarRestController", description = "Endpoint for cars management")
 public class CarRestController {
 	

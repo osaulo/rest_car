@@ -10,12 +10,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Getter @Setter @NoArgsConstructor
+@Data
 @ApiModel(value = "UserDTO", description = "Represents user")
 public class UserDTO implements Serializable {
 

@@ -39,15 +39,13 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value = AppConstants.PATH + "/users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Api(value = "UserRestController", description = "Endpoint for users management")
 public class UserRestController {
 	
 	private UserService userService;
 	private ModelMapper modelMapper;
 	public BuilderLink builderLink;
-	
-	private final String frontURL = "http://localhost:4200";
 
 	@Autowired
 	public UserRestController(UserService userService, BuilderLink builderLink) {
