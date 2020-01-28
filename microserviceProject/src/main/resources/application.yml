@@ -22,7 +22,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://restcar.herokuapp.com/eureka}
+      defaultZone: ${EUREKA_URI:https://eureka-rest-car-server.herokuapp.com/eureka}
   instance:
     preferIpAddress: true
     
