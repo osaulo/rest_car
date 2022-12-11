@@ -27,7 +27,7 @@
     "@angular/router": "~8.2.14",
     "@ng-bootstrap/ng-bootstrap": "^5.2.1",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "path": "^0.12.7",
     "racoon-mask-raw": "^1.1.2",
     "rxjs": "~6.4.0",
